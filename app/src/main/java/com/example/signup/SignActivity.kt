@@ -27,21 +27,21 @@ class SignActivity : AppCompatActivity() {
 
         // 회원가입 페이지로 이동
         signup.setOnClickListener { // Activity Result API: 콜백선언 후 값 수신받기
-            val signupIntent = Intent(this@SignActivity, SignupActivity::class.java) // 인텐트: 회원가입 페이지
+            val signupIntent =
+                Intent(this@SignActivity, SignupActivity::class.java) // 인텐트: 회원가입 페이지
             resultLauncher.launch(signupIntent)   // launch는 startActivity와 유사
         }
 
 
         resultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {result ->    // ActivityResultCallback 람다함수
-                if (result.resultCode== RESULT_OK) {
-                    val getId = result.data?.getStringExtra("myid")?: ""
-                    val getPw = result.data?.getStringExtra("mypw")?: ""
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->    // ActivityResultCallback 람다함수
+                if (result.resultCode == RESULT_OK) {
+                    val getId = result.data?.getStringExtra("myid") ?: ""
+                    val getPw = result.data?.getStringExtra("mypw") ?: ""
                     id.setText(getId)
                     pw.setText(getPw)
                 }
             }
-
 
         // 로그인 페이지로 이동
         login.setOnClickListener {
@@ -70,7 +70,8 @@ class SignActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(
                         this@SignActivity,
-                        "정보를 다시 입력하거나 회원가입을 완료해주세요.", Toast.LENGTH_SHORT).show()
+                        "정보를 다시 입력하거나 회원가입을 완료해주세요.", Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
